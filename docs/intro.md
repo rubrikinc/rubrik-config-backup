@@ -1,4 +1,4 @@
-# Rubrik Configuration Backup
+# Introduction
 
 ## Overview
 
@@ -17,5 +17,13 @@ This tool provide backup and restore of the following Rubrik cluster configurati
 
 ## Usage
 
-rbkcb [-h] [--insecure] {backup,restore,status} path
+rbkcb backup backup/ --insecure 
 
+### Backup
+
+### Restore
+
+
+## TODO
+
+List the planned development for the code.
