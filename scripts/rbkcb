@@ -1,0 +1,58 @@
+#!/usr/bin/env python
+
+import argparse
+import json
+import logging
+import os
+import sys
+
+import cli_ui
+import rubrik_cdm
+
+sys.path.insert(0, os.path.abspath('../src'))
+from rubrik_config.runner import Runner
+from rubrik_config.helpers import cluster_name
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description='Rubrik config backup tool.',
+        epilog=''
+    )
+
+    parser.add_argument('--insecure', action='store_true', help="Don't display TTLS insecure warnings!")
+    parser.add_argument('action', choices=['backup', 'restore', 'status'], default='backup')
+    parser.add_argument('path', type=str, help="Path where config backups are stored")
+
+    args = parser.parse_args()
+
+    logging.basicConfig(level=logging.INFO, format="[%(asctime)s] [%(levelname)s] %(message)s")
+
+    no_cert_warnings = args.insecure
+    if no_cert_warnings:
+        import urllib3
+        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+    return {
+        'path': args.path,
+        'action': args.action,
+        'ignore_insecure_request_warning': args.insecure
+    }
+
+
+if __name__ == "__main__":
+    config = parse_args()
+
+    runner = Runner(config['path'])
+
+    if 'status' == config['action']:
+        runner.status()
+    elif 'restore' == config['action']:
+        cli_ui.info('Initiating restore...')
+        runner.restore()
+        runner.status()
+    else:
+        cli_ui.info('Initiating backup...')
+        runner.backup()
+
+    print()
