@@ -67,7 +67,7 @@ class RubrikConfigBase(abc.ABC):
         os.makedirs(path, exist_ok=True)
         
         for item in content:
-            filename = f"{path}/{name_fn(item)}.json"
+            filename = f"{path}/{helpers.secure_filename(name_fn(item))}.json"
             with open(filename, 'w') as f:
                 file_content = { 
                     'clusterName': self.cluster_name, 
