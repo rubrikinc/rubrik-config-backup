@@ -12,7 +12,8 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/rubrikinc/rubrik-config-backup",
-    packages=setuptools.find_packages(),
+    packages=['rubrik_config'],
+    package_dir={'rubrik_config': 'src/rubrik_config'},
     classifiers=[
         "Intended Audience :: Information Technology",
         "Intended Audience :: System Administrators",
@@ -21,5 +22,17 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
     ],
     python_requires='>=3.6',
+    install_requires=[
+        'cli-ui == 0.10.2',
+        'rubrik-cdm >= 2.0.8',
+        'toposort == 1.5',
+    ],
+    extras_require={
+        'docs': [
+            'Sphinx == 3.1.2',
+            'recommonmark == 0.6.0',
+            'pydata-sphinx-theme == 0.3.1',
+        ],
+    },
     scripts=['scripts/rbkcb']
 )
