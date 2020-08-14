@@ -10,12 +10,17 @@ This tool provide backup and restore of the following Rubrik cluster configurati
 * Fileset Templates
 * Custom Report templates
 
+## Installation
 
-## Pre-Requisites
-
-* Python 3.7
+```
+$ git clone https://github.com/rubrikinc/rubrik-config-backup
+$ cd rubrik-config-backup
+$ python setup.py install
+```
 
 ## Usage
 
-`rbkcb [-h] [--insecure] {backup,restore,status} path`
+````
+$ rbkcb [-h] [--insecure] {backup,restore,status} path
+````
 
