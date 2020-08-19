@@ -1,0 +1,25 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+strategy:
+  matrix:
+    Python36:
+      python.version: '3.6'
+    Python37:
+      python.version: '3.7'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(python.version)'
+  displayName: 'Use Python $(python.version)'
+
+- script: |
+    python setup.py install
+  displayName: 'Install the package'
+
+- script: |
+    rbkcb -h
+  displayName: 'Test run'
