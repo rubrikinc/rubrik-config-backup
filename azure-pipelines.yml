@@ -25,6 +25,6 @@ steps:
   displayName: 'Test run'
 
 - script: |
-    python setup.py install.[docs]
+    pip install .[docs]
     cd docs
     make html
