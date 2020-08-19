@@ -23,3 +23,8 @@ steps:
 - script: |
     rbkcb -h
   displayName: 'Test run'
+
+- script: |
+    python setup.py install.[docs]
+    cd docs
+    make html
