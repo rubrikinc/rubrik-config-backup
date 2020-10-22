@@ -10,6 +10,11 @@ This tool provide backup and restore of the following Rubrik cluster configurati
 * Fileset Templates
 * Custom Report templates
 
+
+## Prerequisites
+
+Python 3.6+
+
 ## Installation
 
 ```
